@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="assets/wi_starry-night.ico">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main class="dashboard">
+        <section class="left-panel">
+            <div class="left-container">
+                <div class="search-input">
+                    <img src="assets/search-svgrepo-com.svg" width="22" height="22" alt="Search icon">
+                    <input type="text" id="cityInput" placeholder="Enter city name" autocomplete="off">
+                    <ul id="suggestions" class="suggestions-list"></ul>
+                </div>
+
+                <div class="weather-info">
+                    <img src="" alt="" id="weather-image">
+                    <p id="temperature"><sup></sup></p>
+                    <p id="day-hour"></p>
+                </div>
+
+                <div class="weather-secondary-info">
+                    <div class="weather-desc-container">
+                        <img src="assets/clear-day.svg" alt="" id="weather-icon" height="32px">
+                        <p id="weather-description"><span aria-hidden="true"></span></p>
+                    </div>
+                    <div class="weather-rain-container">
+                        <img src="assets/raindrops.svg" alt="" height="32px">
+                        <p id="rain-%"></p>
+                    </div>
+                </div>
+                <div class="city-name">
+                    <h1 id="cityText"></h1>
+                </div>
+            </div>
+        </section>
+
+        <section class="right-panel">
+            <div class="right-container">
+               <div class="h2-titles">
+                    <h2 class="today">Today</h2>
+                    <h2 class="week">Forecast</h2>
+                </div>  
+                <div class="hourly-cards">
+        
+                </div>
+                <div class="weather-cards">
+        
+                </div>
+                
+               
+
+                <h2 class="highlights">Today's Highlights</h2>
+
+                <div class="highlight-cards">
+                    <article class="card-2 uv-index-card">
+                        <h3>UV Index</h3>
+                        <div>
+                            <img src="assets/uv-index-5.svg" alt="" height="80px" id="uv-index">
+                        </div>
+                    </article>
+                    <article class="card-2">
+                        <h3>Wind Status</h3>
+                        <div class="wind-status-container">
+                            <p id="wind-status"></p>
+                            <img src="assets/wind.svg" alt="" height="50px">
+                        </div>
+                    </article>
+                    <article class="card-2">
+                        <h3>Sunrise &amp; Sunset</h3>
+                        <div id="sunrise-sunset">
+                            <div>
+                                <img src="assets/sunrise.svg" alt="" height="70px" id="day">
+                                <p id="sunrise"></p>
+                            </div>
+                            <div>
+                                <img src="assets/sunset.svg" alt="" height="70px" id="night">
+                                <p id="sunset"></p>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="card-2">
+                        <h3>Humidity</h3>
+                        <div class="humidity-container">
+                            <p id="humidity"></p>
+                            <img src="assets/humidity.svg" alt="" height="80px">
+                        </div>
+                    </article>
+                    <article class="card-2">
+                        <h3>Visibility</h3>
+                        <div class="visibility-container">
+                            <p id="visibility"></p>
+                            <img src="assets/visibility-svgrepo-com.svg" alt="" height="50px">
+                        </div>
+                    </article>
+                    <article class="card-2">
+                        <h3>Air quality</h3>
+                        <div class="air-quality-container">
+                            <p id="air-quality"></p>
+                            <img src="" alt="" height="50px" id="air-quality-image">
+                        </div>
+                    </article>
+                
+                </div>
+            </div>
+        </section>
+    </main>
+   
+</body>
+</html>
