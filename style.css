@@ -110,7 +110,7 @@ sup{
 
 
 .weather-secondary-info{
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
 }
 
 .weather-desc-container{
@@ -401,9 +401,7 @@ sup{
     transform: scale(1.1);
 }
 
-.weather-secondary-info{
-   margin-top: -20px;
-}
+
 
 
 .city-name{

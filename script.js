@@ -91,8 +91,8 @@ function showToday() {
 // API calls
 async function getCoordinates(cityName) {
     try {
-        const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${API_KEY}`);
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${API_KEY}`);
+        if (!response.ok) throw new Error(`HTTPS error! status: ${response.status}`);
         const data = await response.json();
         if (data.length === 0) throw new Error('City not found');
         return { 
@@ -109,7 +109,7 @@ async function getCoordinates(cityName) {
 
 async function getWeatherByCoordinates(lat, lon) {
     try {
-        const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`);
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`);
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         return await response.json();
     } catch (error) {
@@ -136,9 +136,9 @@ async function getCityWeather(cityName) {
 
 async function getCitySuggestions(input) {
     try {
-        const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=5&appid=${API_KEY}`);
+        const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=5&appid=${API_KEY}`);
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(`HTTPS error! status: ${response.status}`);
         }
         const data = await response.json();
         displaySuggestions(data);
@@ -150,9 +150,9 @@ async function getCitySuggestions(input) {
 async function getCityPrecipitation(input) {
     try {
         const { lat, lon } = await getCoordinates(input);
-        const response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`);
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`);
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(`HTTPS error! status: ${response.status}`);
         }
         const data = await response.json();
         updatePrecipitationProbability(data);
@@ -167,9 +167,9 @@ async function getWeekForecastWeather(input){
 
     try { 
         const { lat, lon } = await getCoordinates(input);
-        const response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`);
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`);
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(`HTTPS error! status: ${response.status}`);
         }
         const data = await response.json();
        
@@ -185,7 +185,7 @@ async function getWeekForecastWeather(input){
 
 
 async function getUVIndex(input) {
-    //const API_KEY = 'openuv-1u44rm0y75ixt-io';
+    const API_KEY = 'openuv-1u44rm0y75ixt-io';
 
     try {
         const {lat, lon } = await getCoordinates(input);
@@ -490,10 +490,10 @@ function updateWeekForecastCards(forecastData) {
 
 function updateUvIndex(data) {
     const uvIndex = Math.ceil(data.result.uv); 
-    if (uvIndex) {
+    if (!uvIndex) {
         document.getElementById('uv-index').src = `assets/${getuviImage(uvIndex)}`;
     } else {
-        document.getElementById('uv-index').src = 'UV Index: Not available';
+        document.getElementById('uv-index').src = 'assets/not-available.svg';
     }
 }
 
