@@ -490,11 +490,7 @@ function updateWeekForecastCards(forecastData) {
 
 function updateUvIndex(data) {
     const uvIndex = Math.ceil(data.result.uv); 
-    if (!uvIndex) {
-        document.getElementById('uv-index').src = `assets/${getuviImage(uvIndex)}`;
-    } else {
-        document.getElementById('uv-index').src = 'assets/not-available.svg';
-    }
+    document.getElementById('uv-index').src = `assets/${getuviImage(uvIndex)}`;
 }
 
 
