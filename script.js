@@ -13,6 +13,7 @@ const hourlyCards = document.querySelector('.hourly-cards');
 let globalSunsetTime;
 let globalSunriseTime;
 
+let currentFocus = -1;
 
 // Initialization
 document.addEventListener('DOMContentLoaded', function() {
@@ -53,6 +54,59 @@ function handleInput(event) {
         getCitySuggestions(userInput);
     } else {
         clearSuggestions();
+    }
+}
+
+searchInput.addEventListener('keydown', function(e) {
+    let suggestionsList = document.querySelector('.suggestions-list');
+    let suggestionItems = suggestionsList.querySelectorAll('li');
+    
+    if (e.key === 'ArrowDown') {
+        currentFocus++;
+        addActive(suggestionItems);
+        ensureVisible(suggestionsList, suggestionItems[currentFocus]);
+    } else if (e.key === 'ArrowUp') {
+        currentFocus--;
+        addActive(suggestionItems);
+        ensureVisible(suggestionsList, suggestionItems[currentFocus]);
+    } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (currentFocus > -1) {
+            if (suggestionItems) suggestionItems[currentFocus].click();
+        }
+    }
+});
+
+function addActive(items) {
+    if (!items) return false;
+    removeActive(items);
+    if (currentFocus >= items.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (items.length - 1);
+    items[currentFocus].classList.add("active");
+}
+
+function removeActive(items) {
+    for (let i = 0; i < items.length; i++) {
+        items[i].classList.remove("active");
+    }
+}
+
+function ensureVisible(container, element) {
+    const containerHeight = container.clientHeight;
+    const elementHeight = element.clientHeight;
+
+    const containerTop = container.scrollTop;
+    const containerBottom = containerTop + containerHeight;
+
+    const elementTop = element.offsetTop;
+    const elementBottom = elementTop + elementHeight;
+
+    if (elementTop < containerTop) {
+        // Scroll up if the element is above the visible area
+        container.scrollTop = elementTop;
+    } else if (elementBottom > containerBottom) {
+        // Scroll down if the element is below the visible area
+        container.scrollTop = elementBottom - containerHeight;
     }
 }
 

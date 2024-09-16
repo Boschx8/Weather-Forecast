@@ -295,6 +295,19 @@ sup {
     background-color: #4e4d4c;
 }
 
+/* New styles for keyboard navigation */
+.suggestions-list li.active {
+    background-color: #4e4d4c;
+    color: #ffcc00;
+    font-weight: bold;
+}
+
+/* Optional: Add a subtle outline to make it more accessible */
+.suggestions-list li.active {
+    outline: 2px solid #ffcc00;
+    outline-offset: -2px;
+}
+
 .weather-cards .card.today {
     border: 2px solid #ffcc00;
     box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
